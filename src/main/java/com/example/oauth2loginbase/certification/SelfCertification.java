@@ -1,6 +1,6 @@
 package com.example.oauth2loginbase.certification;
 
-import com.example.oauth2loginbase.model.ProviderUser;
+import com.example.oauth2loginbase.model.users.ProviderUser;
 import com.example.oauth2loginbase.model.users.User;
 import com.example.oauth2loginbase.repository.UserRepository;
 import lombok.RequiredArgsConstructor;

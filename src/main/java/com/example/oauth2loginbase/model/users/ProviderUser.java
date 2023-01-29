@@ -1,4 +1,4 @@
-package com.example.oauth2loginbase.model;
+package com.example.oauth2loginbase.model.users;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.oauth2.core.user.OAuth2User;
@@ -20,11 +20,9 @@ public interface ProviderUser {
 
     String getEmail();
 
-    String getPicture();
-
     String getProvider();
 
-    boolean isCertificated();
+    String getPicture();
 
     List<? extends GrantedAuthority> getAuthorities();
 
@@ -32,6 +30,8 @@ public interface ProviderUser {
     Map<String, Object> getAttributes();
 
     OAuth2User getOAuth2User();
+
+    boolean isCertificated();
 
     void isCertificated(boolean bool);
 }

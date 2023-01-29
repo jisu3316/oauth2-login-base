@@ -1,6 +1,6 @@
-package com.example.oauth2loginbase.model.users;
+package com.example.oauth2loginbase.model.users.form;
 
-import com.example.oauth2loginbase.model.ProviderUser;
+import com.example.oauth2loginbase.model.users.ProviderUser;
 import lombok.Builder;
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;

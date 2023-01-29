@@ -29,7 +29,7 @@ spring:
             client-name: naver-client-app
             redirect-uri: http://localhost:8081/login/oauth2/code/naver
             scope: profile,email
-            #scope: openid,profile,email
+
           kakao:
             client-id: b6daf0aae1bdaa4b978913614d2c3553
             client-secret: luBAmZ7VAoZnrLQFvUxKz6Qw8xVDYf3w
@@ -49,6 +49,7 @@ spring:
             userInfoUri: http://localhost:8080/realms/oauth2/protocol/openid-connect/userinfo     #OAuth 2.0 UserInfo 엔드 포인트
             userNameAttribute: preferred_username
             #OAuth 2.0 사용자명을 추출하는 클레임명
+
           naver:
             authorization-uri: https://nid.naver.com/oauth2.0/authorize
             token-uri: https://nid.naver.com/oauth2.0/token
@@ -56,6 +57,7 @@ spring:
             user-name-attribute: response
 
           kakao:
+            # OpenID Connect 일 경우 jwkSet URI 를 가져와야 하기 때문에 필수항목
             issuerUri: https://kauth.kakao.com
             authorizationUri: https://kauth.kakao.com/oauth/authorize
             tokenUri: https://kauth.kakao.com/oauth/token
@@ -63,6 +65,10 @@ spring:
             userInfoUri: https://kapi.kakao.com/v2/user/me
             jwkSetUri: https://kauth.kakao.com/.well-known/jwks.json
             userNameAttribute: id
+
+            # OpenID Connect 일 경우 nameAttributeKey 가 sub 이기 때문에 별도의 커스트 마이징이 필요
+            # CustomOidcUserService 참조
+            # user-name-attribute: sub
 
 
   mvc:

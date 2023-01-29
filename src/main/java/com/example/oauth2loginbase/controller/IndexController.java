@@ -1,6 +1,6 @@
 package com.example.oauth2loginbase.controller;
 
-import com.example.oauth2loginbase.model.PrincipalUser;
+import com.example.oauth2loginbase.model.users.PrincipalUser;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;

@@ -1,10 +1,6 @@
 package com.example.oauth2loginbase.common.util;
 
-import com.example.oauth2loginbase.common.enums.OAuth2Config;
 import com.example.oauth2loginbase.model.Attributes;
-import com.example.oauth2loginbase.model.PrincipalUser;
-import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;
-import org.springframework.security.oauth2.core.oidc.user.OidcUser;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 
 import java.util.Map;
@@ -39,36 +35,5 @@ public class OAuth2Utils {
                 .subAttributes(subAttributes)
                 .otherAttributes(otherAttributes)
                 .build();
-    }
-
-    public static String oAuth2UserName(OAuth2AuthenticationToken authentication, PrincipalUser principalUser) {
-
-        String userName;
-        String registrationId = authentication.getAuthorizedClientRegistrationId();
-        OAuth2User oAuth2User = principalUser.providerUser().getOAuth2User();
-
-        // Google, Facebook, Apple
-        Attributes attributes = OAuth2Utils.getMainAttributes(oAuth2User);
-        userName = (String) attributes.getMainAttributes().get("name");
-
-        // Naver
-        if (OAuth2Config.SocialType.NAVER.getSocialName().equals(registrationId)) {
-            attributes = OAuth2Utils.getSubAttributes(oAuth2User, "response");
-            userName = (String) attributes.getSubAttributes().get("name");
-
-            // Kakao
-        } else if (OAuth2Config.SocialType.KAKAO.getSocialName().equals(registrationId)) {
-
-            // OpenID Connect
-            if (oAuth2User instanceof OidcUser) {
-                attributes = OAuth2Utils.getMainAttributes(oAuth2User);
-                userName = (String) attributes.getMainAttributes().get("nickname");
-
-            } else {
-                attributes = OAuth2Utils.getOtherAttributes(principalUser, "profile", null);
-                userName = (String) attributes.getSubAttributes().get("nickname");
-            }
-        }
-        return userName;
     }
 }

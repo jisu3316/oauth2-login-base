@@ -1,13 +1,13 @@
 package com.example.oauth2loginbase.common.converters;
 
-import com.example.oauth2loginbase.model.ProviderUser;
-import com.example.oauth2loginbase.model.users.FormUser;
+import com.example.oauth2loginbase.model.users.ProviderUser;
+import com.example.oauth2loginbase.model.users.form.FormUser;
 import com.example.oauth2loginbase.model.users.User;
 
 public class UserDetailsProviderUserConverter implements ProviderUserConverter<ProviderUserRequest, ProviderUser> {
 
     @Override
-    public ProviderUser converter(ProviderUserRequest providerUserRequest) {
+    public ProviderUser convert(ProviderUserRequest providerUserRequest) {
         if (providerUserRequest.user() == null) {
             return null;
         }
@@ -17,9 +17,9 @@ public class UserDetailsProviderUserConverter implements ProviderUserConverter<P
                 .id(user.getId())
                 .username(user.getUsername())
                 .password(user.getPassword())
+                .authorities(user.getAuthorities())
                 .email(user.getEmail())
                 .provider("none")
-                .authorities(user.getAuthorities())
                 .build();
     }
 }

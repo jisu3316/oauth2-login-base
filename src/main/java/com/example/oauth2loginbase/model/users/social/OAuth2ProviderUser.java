@@ -1,6 +1,7 @@
-package com.example.oauth2loginbase.model;
+package com.example.oauth2loginbase.model.users.social;
 
 
+import com.example.oauth2loginbase.model.users.ProviderUser;
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -35,25 +36,19 @@ public abstract class OAuth2ProviderUser implements ProviderUser {
     }
 
     @Override
+    public String getEmail() {
+        return (String) attributes.get("email");
+    }
+
+    @Override
     public String getProvider() {
         return clientRegistration.getRegistrationId();
     }
 
     @Override
-    public String getEmail() {
-        return (String) getAttributes().get("email");
-    }
-
-    @Override
     public List<? extends GrantedAuthority> getAuthorities() {
-        return oAuth2User.getAuthorities().stream()
-                .map(grantedAuthority -> new SimpleGrantedAuthority(grantedAuthority.getAuthority()))
-                .collect(Collectors.toList());
-    }
-
-    @Override
-    public Map<String, Object> getAttributes() {
-        return attributes;
+        return oAuth2User.getAuthorities().stream().map(authority ->
+                new SimpleGrantedAuthority(authority.getAuthority())).collect(Collectors.toList());
     }
 
     @Override

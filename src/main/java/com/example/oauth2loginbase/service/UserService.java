@@ -1,6 +1,6 @@
 package com.example.oauth2loginbase.service;
 
-import com.example.oauth2loginbase.model.ProviderUser;
+import com.example.oauth2loginbase.model.users.ProviderUser;
 import com.example.oauth2loginbase.model.users.User;
 import com.example.oauth2loginbase.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -17,7 +17,8 @@ public class UserService {
                 .registrationId(registrationId)
                 .id(providerUser.getId())
                 .username(providerUser.getUsername())
-                .provider(providerUser.getPassword())
+                .password(providerUser.getPassword())
+                .provider(providerUser.getProvider())
                 .email(providerUser.getEmail())
                 .picture(providerUser.getPicture())
                 .authorities(providerUser.getAuthorities())

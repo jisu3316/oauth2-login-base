@@ -1,4 +1,4 @@
-package com.example.oauth2loginbase.model;
+package com.example.oauth2loginbase.model.users;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -8,6 +8,7 @@ import org.springframework.security.oauth2.core.oidc.user.OidcUser;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.Map;
 
 /*
@@ -62,7 +63,7 @@ public record PrincipalUser(ProviderUser providerUser) implements UserDetails, O
 
     @Override
     public Map<String, Object> getClaims() {
-        return null;
+        return new HashMap<>();
     }
 
     @Override

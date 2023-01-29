@@ -3,8 +3,8 @@ package com.example.oauth2loginbase.service;
 import com.example.oauth2loginbase.certification.SelfCertification;
 import com.example.oauth2loginbase.common.converters.ProviderUserConverter;
 import com.example.oauth2loginbase.common.converters.ProviderUserRequest;
-import com.example.oauth2loginbase.model.PrincipalUser;
-import com.example.oauth2loginbase.model.ProviderUser;
+import com.example.oauth2loginbase.model.users.PrincipalUser;
+import com.example.oauth2loginbase.model.users.ProviderUser;
 import com.example.oauth2loginbase.model.users.User;
 import com.example.oauth2loginbase.repository.UserRepository;
 import org.springframework.security.core.authority.AuthorityUtils;
@@ -26,7 +26,9 @@ public class CustomUserDetailService extends AbstractOAuth2UserService implement
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+
         User user = userRepository.findByUsername(username);
+
         if (user == null) {
             user = User.builder()
                     .id("1")

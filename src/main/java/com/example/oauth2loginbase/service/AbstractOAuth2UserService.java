@@ -3,7 +3,7 @@ package com.example.oauth2loginbase.service;
 import com.example.oauth2loginbase.certification.SelfCertification;
 import com.example.oauth2loginbase.common.converters.ProviderUserConverter;
 import com.example.oauth2loginbase.common.converters.ProviderUserRequest;
-import com.example.oauth2loginbase.model.ProviderUser;
+import com.example.oauth2loginbase.model.users.ProviderUser;
 import com.example.oauth2loginbase.model.users.User;
 import com.example.oauth2loginbase.repository.UserRepository;
 import lombok.Getter;
@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 @Getter
 @Service
 @RequiredArgsConstructor
-public class AbstractOAuth2UserService {
+public abstract class AbstractOAuth2UserService {
 
     private final UserRepository userRepository;
     private final UserService userService;
@@ -39,6 +39,6 @@ public class AbstractOAuth2UserService {
 
     //최종 반환 객체를 컨버터객체를 통해 반환 받게 된다.
     public ProviderUser providerUser(ProviderUserRequest providerUserRequest) {
-        return providerUserConverter.converter(providerUserRequest);
+        return providerUserConverter.convert(providerUserRequest);
     }
 }

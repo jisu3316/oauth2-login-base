@@ -3,8 +3,8 @@ package com.example.oauth2loginbase.service;
 import com.example.oauth2loginbase.certification.SelfCertification;
 import com.example.oauth2loginbase.common.converters.ProviderUserConverter;
 import com.example.oauth2loginbase.common.converters.ProviderUserRequest;
-import com.example.oauth2loginbase.model.PrincipalUser;
-import com.example.oauth2loginbase.model.ProviderUser;
+import com.example.oauth2loginbase.model.users.PrincipalUser;
+import com.example.oauth2loginbase.model.users.ProviderUser;
 import com.example.oauth2loginbase.repository.UserRepository;
 import org.springframework.security.oauth2.client.oidc.userinfo.OidcUserRequest;
 import org.springframework.security.oauth2.client.oidc.userinfo.OidcUserService;
@@ -45,6 +45,8 @@ public class CustomOidcUserService extends AbstractOAuth2UserService implements 
         ProviderUserRequest providerUserRequest = new ProviderUserRequest(clientRegistration, oidcUser);
 
         ProviderUser providerUser = providerUser(providerUserRequest);
+
+        selfCertificate(providerUser);
         //회원 가입 하기
         super.register(providerUser, userRequest);
 
